@@ -22,7 +22,15 @@ while True:
     if received_message.lower() == f"{packet_num}":
         packet_num += 1
         print("sent message to server succesfully")
-    else :
+    elif received_message.lower() == "-2" :
+        while received_message.lower() == "-2":
+            print ("connection lost trying again")
+            client_socket.sendto(byte,addr)
+            data, server = client_socket.recvfrom(1024)
+            received_message = data.decode()
+        print("sent message to server succesfully")
+        packet_num += 1
+    else:
         print("couldn't send message")
     
 
